@@ -1,0 +1,167 @@
+### Archivo de pruebas HTTP para la API de Tareas
+### Usar con extensión REST Client de VS Code
+
+### Variables
+@baseUrl = http://localhost:3000
+@contentType = application/json
+
+### 1. Obtener todas las tareas
+GET {{baseUrl}}/tareas
+Content-Type: {{contentType}}
+
+###
+
+### 2. Obtener solo tareas completadas
+GET {{baseUrl}}/tareas?completada=true
+Content-Type: {{contentType}}
+
+###
+
+### 3. Obtener solo tareas pendientes
+GET {{baseUrl}}/tareas?completada=false
+Content-Type: {{contentType}}
+
+###
+
+### 4. Obtener una tarea específica (cambiar ID por uno existente)
+GET {{baseUrl}}/tareas/1
+Content-Type: {{contentType}}
+
+###
+
+### 5. Crear nueva tarea pendiente
+POST {{baseUrl}}/tareas
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Preparar presentación",
+    "completada": false
+}
+
+###
+
+### 6. Crear nueva tarea completada
+POST {{baseUrl}}/tareas
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Revisar emails",
+    "completada": true
+}
+
+###
+
+### 7. Intentar crear tarea duplicada (debe fallar)
+POST {{baseUrl}}/tareas
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Preparar presentación",
+    "completada": false
+}
+
+###
+
+### 8. Crear tarea con nombre muy corto (debe fallar)
+POST {{baseUrl}}/tareas
+Content-Type: {{contentType}}
+
+{
+    "nombre": "AA",
+    "completada": false
+}
+
+###
+
+### 9. Actualizar tarea completa (PUT)
+PUT {{baseUrl}}/tareas/1
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Estudiar para el examen final",
+    "completada": true
+}
+
+###
+
+### 10. Actualizar parcialmente solo el estado (PATCH)
+PATCH {{baseUrl}}/tareas/2
+Content-Type: {{contentType}}
+
+{
+    "completada": true
+}
+
+###
+
+### 11. Actualizar parcialmente solo el nombre (PATCH)
+PATCH {{baseUrl}}/tareas/3
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Llamar al dentista"
+}
+
+###
+
+### 12. Actualizar parcialmente ambos campos (PATCH)
+PATCH {{baseUrl}}/tareas/4
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Proyecto terminado completamente",
+    "completada": true
+}
+
+###
+
+### 13. Eliminar una tarea
+DELETE {{baseUrl}}/tareas/5
+Content-Type: {{contentType}}
+
+###
+
+### 14. Intentar obtener tarea eliminada (debe retornar 404)
+GET {{baseUrl}}/tareas/5
+Content-Type: {{contentType}}
+
+###
+
+### 15. Intentar actualizar tarea inexistente (debe retornar 404)
+PUT {{baseUrl}}/tareas/999
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Tarea inexistente",
+    "completada": false
+}
+
+###
+
+### 16. Prueba con ID inválido (debe retornar error de validación)
+GET {{baseUrl}}/tareas/abc
+Content-Type: {{contentType}}
+
+###
+
+### 17. Prueba con parámetro de filtro inválido (debe retornar error de validación)
+GET {{baseUrl}}/tareas?completada=maybe
+Content-Type: {{contentType}}
+
+###
+
+### 18. Crear tarea sin nombre (debe fallar)
+POST {{baseUrl}}/tareas
+Content-Type: {{contentType}}
+
+{
+    "completada": false
+}
+
+###
+
+### 19. Ruta inexistente (debe retornar 404)
+GET {{baseUrl}}/inexistente
+Content-Type: {{contentType}}
+
+###
