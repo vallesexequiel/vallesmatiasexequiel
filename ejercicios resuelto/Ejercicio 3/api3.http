@@ -1,0 +1,94 @@
+Archivo de pruebas HTTP para la API de Alumnos
+Usar con extensión REST Client de VS Code
+Variables
+@baseUrl = http://localhost:3000/
+@contentType = application/json
+
+==================== MATERIAS ====================
+Obtener todas las materias
+GET {{baseUrl}}/materias
+Content-Type: {{contentType}}
+
+###
+
+Crear nueva materia
+POST {{baseUrl}}/materias
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Base de Datos",
+    "codigo": "BD001",
+    "creditos": 4
+}
+
+###
+
+Crear materia con valores por defecto
+POST {{baseUrl}}/materias
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Algoritmos y Estructuras de Datos",
+    "codigo": "AED001"
+}
+
+###
+
+Intentar crear materia duplicada (debe fallar)
+POST {{baseUrl}}/materias
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Matemática I",
+    "codigo": "MAT002",
+    "creditos": 3
+}
+
+###
+
+Crear materia con código inválido (debe fallar)
+POST {{baseUrl}}/materias
+Content-Type: {{contentType}}
+
+{
+    "nombre": "Historia",
+    "codigo": "H",
+    "creditos": 2
+}
+
+###
+
+==================== ALUMNOS ====================
+Obtener todos los alumnos
+GET {{baseUrl}}/alumnos
+Content-Type: {{contentType}}
+
+###
+
+Filtrar alumnos por materia
+GET {{baseUrl}}/alumnos?materia_id=1
+Content-Type: {{contentType}}
+
+###
+
+Filtrar alumnos aprobados
+GET {{baseUrl}}/alumnos?estado=aprobado
+Content-Type: {{contentType}}
+
+###
+
+Filtrar alumnos regulares
+GET {{baseUrl}}/alumnos?estado=regular
+Content-Type: {{contentType}}
+
+###
+
+Filtrar alumnos libres
+GET {{baseUrl}}/alumnos?estado=libre
+Content-Type: {{contentType}}
+
+###
+
+Filtrar por materia y estado
+GET {{baseUrl}}/alumnos
+http

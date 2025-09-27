@@ -1,0 +1,24 @@
+{
+  "name": "trabajo-practico-2",
+  "version": "1.0.0",
+  "description": "Trabajo Práctico N° 2 - valles matias exequiel",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "dev:1": "cd \"Ejercicio 1\" && node --watch app.js",
+    "dev:2": "cd \"Ejercicio 2\" && node --watch app.js",
+    "dev:3": "cd \"Ejercicio 3\" && node --watch app.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "mysql2": "^3.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "author": "valles exequiel",
+  "license": "ISC"
+}
