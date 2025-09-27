@@ -1,0 +1,65 @@
+### API de Rectángulos - Pruebas
+
+@baseUrl = http://localhost:3000
+
+### 1. Obtener todos los rectángulos
+GET {{baseUrl}}/rectangulos
+
+### 2. Crear un nuevo rectángulo
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 5.5,
+    "lado2": 3.2
+}
+
+### 3. Crear otro rectángulo
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 10,
+    "lado2": 7.5
+}
+
+### 4. Obtener un rectángulo específico (reemplaza :id con un ID real)
+GET {{baseUrl}}/rectangulos/1
+
+### 5. Actualizar un rectángulo (reemplaza :id con un ID real)
+PUT {{baseUrl}}/rectangulos/1
+Content-Type: application/json
+
+{
+    "lado1": 8.0,
+    "lado2": 4.5
+}
+
+### 6. Eliminar un rectángulo (reemplaza :id con un ID real)
+DELETE {{baseUrl}}/rectangulos/1
+
+### 7. Prueba de validación - Error: lado negativo
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": -5,
+    "lado2": 3
+}
+
+### 8. Prueba de validación - Error: lado cero
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 0,
+    "lado2": 3
+}
+
+### 9. Prueba de validación - Error: falta un lado
+POST {{baseUrl}}/rectangulos
+Content-Type: application/json
+
+{
+    "lado1": 5
+}
